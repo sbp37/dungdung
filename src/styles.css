@@ -268,6 +268,31 @@ body {
   border-style: solid;
 }
 
+.dump-gallery {
+  display: flex;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 4px 2px 0;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.gallery-item:nth-child(odd) .pixel-sprite {
+  animation-delay: -1.2s;
+}
+
+.gallery-item:nth-child(2n) .pixel-sprite {
+  animation-delay: -2.4s;
+}
+
 .dump-foot {
   display: flex;
   align-items: center;
@@ -297,6 +322,167 @@ body {
   overflow: hidden;
 }
 
+/* 방 데코 레이어 — 구름, 반짝이, 먼지, 풀 */
+
+.room-deco {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cloud {
+  position: absolute;
+  opacity: 0.9;
+  animation: drift linear infinite;
+}
+
+.c1 {
+  top: 8%;
+  left: -64px;
+  animation-duration: 55s;
+}
+
+.c2 {
+  top: 22%;
+  left: -48px;
+  animation-duration: 75s;
+  animation-delay: -30s;
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(560px);
+  }
+}
+
+.twinkle {
+  position: absolute;
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+
+.t1 {
+  top: 12%;
+  right: 14%;
+}
+
+.t2 {
+  top: 30%;
+  left: 10%;
+  animation-delay: -1.3s;
+}
+
+.t3 {
+  top: 6%;
+  left: 40%;
+  animation-delay: -0.7s;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.mote {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 253, 247, 0.9);
+  border: 1px solid rgba(74, 66, 87, 0.25);
+  animation: mote-float ease-in-out infinite;
+}
+
+.m0 {
+  top: 18%;
+  left: 24%;
+  animation-duration: 5.2s;
+}
+.m1 {
+  top: 42%;
+  left: 72%;
+  animation-duration: 6.4s;
+  animation-delay: -2s;
+}
+.m2 {
+  top: 55%;
+  left: 18%;
+  animation-duration: 7s;
+  animation-delay: -1s;
+}
+.m3 {
+  top: 68%;
+  left: 58%;
+  animation-duration: 5.8s;
+  animation-delay: -3s;
+}
+.m4 {
+  top: 35%;
+  left: 45%;
+  animation-duration: 6.8s;
+  animation-delay: -4s;
+}
+.m5 {
+  top: 78%;
+  left: 82%;
+  animation-duration: 6s;
+  animation-delay: -2.5s;
+}
+
+@keyframes mote-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.tuft {
+  position: absolute;
+  bottom: 20px;
+}
+
+.tf1 {
+  left: 6%;
+}
+.tf2 {
+  left: 30%;
+}
+.tf3 {
+  right: 12%;
+}
+.tf4 {
+  right: 32%;
+}
+
+/* 몬스터 등장 — 방에 스폰될 때 폭 튀어나옴 */
+
+.floater-sprite {
+  display: grid;
+  place-items: center;
+  animation: spawn-pop 0.35s cubic-bezier(0.2, 1.6, 0.4, 1) backwards;
+}
+
+@keyframes spawn-pop {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
 .room-floor {
   position: absolute;
   left: 8%;
@@ -308,6 +494,7 @@ body {
 }
 
 .room-cloud {
+  z-index: 1;
   position: relative;
   display: flex;
   flex-wrap: wrap;

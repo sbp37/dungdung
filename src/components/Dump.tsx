@@ -33,6 +33,22 @@ export function Dump({ onDump, hasRoom, onClose }: Props) {
         autoFocus
         rows={9}
       />
+      <div className="dump-gallery" aria-hidden>
+        {(
+          [
+            ['seer', '걱정 → 봉인'],
+            ['brick', '할일 → 쪼개기'],
+            ['junk', '잡념 → 분쇄'],
+            ['memo', '기억 → 보관'],
+            ['spark', '조각 → 처치'],
+          ] as const
+        ).map(([name, label]) => (
+          <div key={name} className="gallery-item">
+            <Pixel name={name} size={3} className="bob-slow" />
+            <span>{label}</span>
+          </div>
+        ))}
+      </div>
       <div className="dump-foot">
         <span className="dump-count">{lines.length > 0 ? `잡념 ${lines.length}개 포착` : '…'}</span>
         <div className="dump-btns">

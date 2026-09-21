@@ -141,6 +141,41 @@ export const SPRITES: Record<string, Sprite> = {
     ],
   },
 
+  // 구름 — 방 배경 데코. 크림 하늘을 떠다니는 솜구름
+  cloud: {
+    palette: { K, W, C: '#eaf4fb' },
+    rows: [
+      '......KKKK......',
+      '....KKWWWWKK....',
+      '..KKWWWWWWWWKK..',
+      '.KWWWWWWWWWWWWK.',
+      'KCWWWWWWWWWWCWK.',
+      '.KKKKKKKKKKKKKK.',
+    ],
+  },
+
+  // 반짝이 — 방 배경 데코. 네모난 4점 스파클
+  star: {
+    palette: { K, W, Y: '#ffdf6b' },
+    rows: [
+      '.......KK.......',
+      '......KWWK......',
+      '......KWWK......',
+      '...KKKWWWWKKK...',
+      '..KWWYYWWYYWWK..',
+      '...KKKWWWWKKK...',
+      '......KWWK......',
+      '......KWWK......',
+      '.......KK.......',
+    ],
+  },
+
+  // 풀뭉치 — 방 바닥 데코
+  tuft: {
+    palette: { K, G: '#8fd0a0', g: '#6cba82' },
+    rows: ['..K...K...K.....', '..K..K.K..K.K...', '..KG.KG.G.KG.K..', '..KGGKGGGKGKGK..', '...KKKKKKKKK....'],
+  },
+
   // 분쇄기 — 잡념 분쇄 장면에서 위에서 내려오는 톱니
   crusher: {
     palette: { K, W, B, C: '#b9c2d0', c: '#98a3b5' },

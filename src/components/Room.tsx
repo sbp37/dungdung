@@ -18,6 +18,20 @@ export function Room({ floats, sparks, onJudge, onSpark }: Props) {
   const empty = floats.length === 0 && sparks.length === 0
   return (
     <div className={`room ${empty ? 'room-clear' : ''}`}>
+      <div className="room-deco" aria-hidden>
+        <Pixel name="cloud" size={3} className="cloud c1" />
+        <Pixel name="cloud" size={2} className="cloud c2" />
+        <Pixel name="star" size={2} className="twinkle t1" />
+        <Pixel name="star" size={2} className="twinkle t2" />
+        <Pixel name="star" size={1} className="twinkle t3" />
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <div key={i} className={`mote m${i}`} />
+        ))}
+        <Pixel name="tuft" size={2} className="tuft tf1" />
+        <Pixel name="tuft" size={2} className="tuft tf2" />
+        <Pixel name="tuft" size={2} className="tuft tf3" />
+        <Pixel name="tuft" size={1} className="tuft tf4" />
+      </div>
       {empty ? (
         <div className="room-empty">
           <Pixel name="puff" size={5} className="bob-slow" />
@@ -38,7 +52,9 @@ export function Room({ floats, sparks, onJudge, onSpark }: Props) {
                 onClick={() => onJudge(t)}
                 title={t.text}
               >
-                <Pixel name={spriteFor(t)} size={4} />
+                <span className="floater-sprite" style={{ transform: `rotate(${(h % 9) - 4}deg)` }}>
+                  <Pixel name={spriteFor(t)} size={4} />
+                </span>
                 <span className="floater-label">{t.text}</span>
               </button>
             )
@@ -56,7 +72,9 @@ export function Room({ floats, sparks, onJudge, onSpark }: Props) {
                 onClick={() => onSpark(p)}
                 title={p.text}
               >
-                <Pixel name="spark" size={3} />
+                <span className="floater-sprite" style={{ transform: `rotate(${(h % 9) - 4}deg)` }}>
+                  <Pixel name="spark" size={3} />
+                </span>
                 <span className="floater-label floater-label-spark">{p.text}</span>
               </button>
             )
