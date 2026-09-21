@@ -21,9 +21,18 @@ interface PieceProps {
 
 const GUESS_LABEL = { worry: '걱정', task: '할일', junk: '잡념' } as const
 
+function useEscape(onClose: () => void) {
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    document.addEventListener('keydown', h)
+    return () => document.removeEventListener('keydown', h)
+  }, [onClose])
+}
+
 export function JudgeSheet({ thought, onResolve, onSplit, onClose }: ThoughtProps) {
   const [phase, setPhase] = useState<Phase>('ask')
   const guess = guessKind(thought.text)
+  useEscape(onClose)
 
   useEffect(() => {
     if (phase === 'ask') return
@@ -86,6 +95,7 @@ export function JudgeSheet({ thought, onResolve, onSplit, onClose }: ThoughtProp
 
 export function PieceSheet({ piece, onDone, onClose }: PieceProps) {
   const [phase, setPhase] = useState<Phase>('ask')
+  useEscape(onClose)
 
   useEffect(() => {
     if (phase !== 'slain') return

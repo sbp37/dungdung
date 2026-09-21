@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { daysOld, guessKind, spriteFor, type Thought } from '../src/store'
+import { daysOld, guessKind, pieceSprite, spriteFor, type Piece, type Thought } from '../src/store'
 
 describe('guessKind', () => {
   it('추측/걱정 문구는 worry', () => {
@@ -32,6 +32,15 @@ describe('spriteFor', () => {
     expect(spriteFor({ ...base, kind: 'float', text: '혹시 망하면' })).toBe('seer')
     expect(spriteFor({ ...base, kind: 'float', text: '밀린 빨래 해야' })).toBe('brick')
     expect(spriteFor({ ...base, kind: 'float', text: '멍' })).toBe('puff')
+  })
+})
+
+describe('pieceSprite', () => {
+  const piece: Piece = { id: 'p', fromId: 'a', text: 'x', done: false, createdAt: Date.now() }
+
+  it('조각이 하루 지나면 미뤄몬으로', () => {
+    expect(pieceSprite(piece)).toBe('spark')
+    expect(pieceSprite({ ...piece, createdAt: Date.now() - 86400000 })).toBe('lazy')
   })
 })
 

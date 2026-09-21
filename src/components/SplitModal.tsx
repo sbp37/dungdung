@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Pixel } from '../Pixel'
 import { Thought, spriteFor } from '../store'
 
@@ -11,6 +11,12 @@ interface Props {
 export function SplitModal({ thought, onSplit, onClose }: Props) {
   const [pieces, setPieces] = useState<string[]>([])
   const [draft, setDraft] = useState('')
+
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    document.addEventListener('keydown', h)
+    return () => document.removeEventListener('keydown', h)
+  }, [onClose])
 
   const add = () => {
     const t = draft.trim()
@@ -35,7 +41,10 @@ export function SplitModal({ thought, onSplit, onClose }: Props) {
             className="split-input"
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && add()}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') add()
+              e.stopPropagation()
+            }}
             placeholder="작은 행동 하나"
             autoFocus
           />

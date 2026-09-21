@@ -173,7 +173,55 @@ export const SPRITES: Record<string, Sprite> = {
   // 풀뭉치 — 방 바닥 데코
   tuft: {
     palette: { K, G: '#8fd0a0', g: '#6cba82' },
-    rows: ['..K...K...K.....', '..K..K.K..K.K...', '..KG.KG.G.KG.K..', '..KGGKGGGKGKGK..', '...KKKKKKKKK....'],
+    rows: [
+      '..K...K...K.....',
+      '..K..K.K..K.K...',
+      '..KG.KG.G.KG.K..',
+      '..KGGKGGGKGKGK..',
+      '...KKKKKKKKK....',
+    ],
+  },
+
+  // 소리 켜짐 — 스피커 + 파형 3줄
+  soundon: {
+    palette: { K, W, C: '#a98fe0' },
+    rows: [
+      '................',
+      '....KK..........',
+      '...KWK..........',
+      '..KWWK.....K....',
+      '.KWWWK...K..K...',
+      'KWWWWK..K....K..',
+      'KWWWWK..K....K..',
+      'KWWWWK..K....K..',
+      'KWWWWK..K....K..',
+      '.KWWWK...K..K...',
+      '..KWWK.....K....',
+      '...KWK..........',
+      '....KK..........',
+      '................',
+    ],
+  },
+
+  // 소리 꺼짐 — 스피커 + X
+  soundoff: {
+    palette: { K, W, C: '#ff9e8a' },
+    rows: [
+      '................',
+      '....KK..........',
+      '...KWK..........',
+      '..KWWK..........',
+      '.KWWWK..K....K..',
+      'KWWWWK...K..K...',
+      'KWWWWK....KK....',
+      'KWWWWK....KK....',
+      'KWWWWK...K..K...',
+      '.KWWWK..K....K..',
+      '..KWWK..........',
+      '...KWK..........',
+      '....KK..........',
+      '................',
+    ],
   },
 
   // 분쇄기 — 잡념 분쇄 장면에서 위에서 내려오는 톱니

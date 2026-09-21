@@ -22,9 +22,17 @@ export interface DungState {
   crushed: number
   sealed: number
   slain: number
+  muted: boolean
 }
 
-export const EMPTY: DungState = { thoughts: [], pieces: [], crushed: 0, sealed: 0, slain: 0 }
+export const EMPTY: DungState = {
+  thoughts: [],
+  pieces: [],
+  crushed: 0,
+  sealed: 0,
+  slain: 0,
+  muted: false,
+}
 
 const KEY = 'dungdung-save-v1'
 
@@ -105,10 +113,16 @@ export function daysOld(ts: number, now = Date.now()) {
 }
 
 export function spriteFor(t: Thought): string {
-  if (t.kind === 'task' && daysOld(t.createdAt) >= 1) return 'lazy'
+  // 며칠 방치된 미해결 잡념은 미뤄몬으로 살찐다
+  if ((t.kind === 'float' || t.kind === 'task') && daysOld(t.createdAt) >= 2) return 'lazy'
   if (t.kind === 'float') {
     const g = guessKind(t.text)
     return g === 'worry' ? 'seer' : g === 'task' ? 'brick' : 'puff'
   }
   return { worry: 'seer', task: 'brick', junk: 'junk', memo: 'memo', float: 'puff' }[t.kind]
+}
+
+// 미처치 조각도 하루 넘기면 미뤄몬
+export function pieceSprite(p: Piece): string {
+  return daysOld(p.createdAt) >= 1 ? 'lazy' : 'spark'
 }

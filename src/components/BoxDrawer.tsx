@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Pixel } from '../Pixel'
 import { Thought, daysOld } from '../store'
 
@@ -11,6 +12,12 @@ interface Props {
 }
 
 export function BoxDrawer({ worries, memos, onUnseal, onCrush, onDropMemo, onClose }: Props) {
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
+    document.addEventListener('keydown', h)
+    return () => document.removeEventListener('keydown', h)
+  }, [onClose])
+
   return (
     <div className="sheet-wrap" onClick={onClose}>
       <div className="sheet sheet-tall" onClick={(e) => e.stopPropagation()}>
@@ -30,7 +37,7 @@ export function BoxDrawer({ worries, memos, onUnseal, onCrush, onDropMemo, onClo
                 <div className="box-item-body">
                   <span>{w.text}</span>
                   <span className="box-stamp">
-                    봉인 {daysOld(w.resolvedAt ?? w.createdAt)}일차 · 예언 적중률 0%
+                    봉인 {daysOld(w.resolvedAt ?? w.createdAt) + 1}일차 · 예언 적중률 0%
                   </span>
                 </div>
                 <button className="chip-x" title="다시 꺼내기" onClick={() => onUnseal(w.id)}>

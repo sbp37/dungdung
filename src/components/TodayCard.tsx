@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Pixel } from '../Pixel'
-import { Piece } from '../store'
+import { Piece, daysOld, pieceSprite } from '../store'
 
 interface Props {
   pieces: Piece[]
@@ -18,8 +18,11 @@ export function TodayCard({ pieces, remaining, onSpark }: Props) {
         <>
           <div className="today-label">오늘은 이거 하나면 됨</div>
           <button className="today-card" onClick={() => onSpark(current)}>
-            <Pixel name="spark" size={3} />
+            <Pixel name={pieceSprite(current)} size={3} />
             <span>{current.text}</span>
+            {pieceSprite(current) === 'lazy' && (
+              <span className="today-lazy">미뤄진 지 {daysOld(current.createdAt)}일</span>
+            )}
           </button>
           {pieces.length > 1 && (
             <button className="link" onClick={() => setIdx((i) => i + 1)}>

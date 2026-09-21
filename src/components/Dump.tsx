@@ -3,11 +3,10 @@ import { Pixel } from '../Pixel'
 
 interface Props {
   onDump: (lines: string[]) => void
-  hasRoom: boolean
   onClose?: () => void
 }
 
-export function Dump({ onDump, hasRoom, onClose }: Props) {
+export function Dump({ onDump, onClose }: Props) {
   const [text, setText] = useState('')
   const lines = text
     .split('\n')
@@ -52,11 +51,9 @@ export function Dump({ onDump, hasRoom, onClose }: Props) {
       <div className="dump-foot">
         <span className="dump-count">{lines.length > 0 ? `잡념 ${lines.length}개 포착` : '…'}</span>
         <div className="dump-btns">
-          {hasRoom && (
-            <button className="btn btn-ghost" onClick={onClose}>
-              닫기
-            </button>
-          )}
+          <button className="btn btn-ghost" onClick={onClose}>
+            방으로
+          </button>
           <button className="btn btn-primary" disabled={lines.length === 0} onClick={() => onDump(lines)}>
             다 쏟았다
           </button>
