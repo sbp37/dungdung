@@ -1,1 +1,0 @@
-{"root":["./src/App.tsx","./src/Pixel.tsx","./src/main.tsx","./src/sound.ts","./src/sprites.ts","./src/store.ts","./src/vite-env.d.ts","./src/components/BoxDrawer.tsx","./src/components/Dump.tsx","./src/components/JudgeSheet.tsx","./src/components/Poof.tsx","./src/components/Room.tsx","./src/components/SplitModal.tsx","./src/components/TodayCard.tsx"],"version":"5.9.3"}
