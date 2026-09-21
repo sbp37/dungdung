@@ -1,0 +1,23 @@
+{
+  "name": "둥둥 — 잡념 처치소",
+  "short_name": "둥둥",
+  "description": "머릿속에 둥둥 떠다니는 잡념을 몬스터로 꺼내 처치하는 앱.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6edd9",
+  "theme_color": "#f6edd9",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
